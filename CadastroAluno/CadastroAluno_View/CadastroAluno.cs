@@ -27,7 +27,7 @@ namespace WindowsFormsApplication2
             alunoInclusao.rgAluno = tbxRG.Text;
 
             AlunoController alunoController = new AlunoController();
-            alunoController.Cadastrar(alunoInclusao.nomeAluno, alunoInclusao.rgAluno, alunoInclusao.cpfAluno);
+            alunoController.Cadastrar(alunoInclusao);
 
             MessageBox.Show("Registro Inserido com sucesso!");
 
@@ -55,7 +55,7 @@ namespace WindowsFormsApplication2
             alunoAlteracao.rgAluno = tbxRG.Text;
 
             AlunoController alunoController = new AlunoController();
-            alunoController.Alterar(alunoAlteracao.nomeAluno, alunoAlteracao.rgAluno, alunoAlteracao.cpfAluno);
+            alunoController.Alterar(alunoAlteracao);
 
             MessageBox.Show("Registro alterado com sucesso!");
 
@@ -69,7 +69,14 @@ namespace WindowsFormsApplication2
             alunoExclusao.rgAluno = tbxRG.Text;
 
             AlunoController alunoController = new AlunoController();
-            alunoController.Exclusao(alunoExclusao.nomeAluno, alunoExclusao.rgAluno, alunoExclusao.cpfAluno);
+            alunoController.Exclusao(alunoExclusao);
+            MessageBox.Show("Registro Excluído com sucesso!");
+
+            tbxCPF.Text = string.Empty;
+            tbxNome.Text = string.Empty;
+            tbxRG.Text = string.Empty;
+
+            tbxNome.Focus();
         }
 
         private void btnConsulta_Click(object sender, EventArgs e)
@@ -84,7 +91,7 @@ namespace WindowsFormsApplication2
             Aluno novoAluno = new Aluno();
             if (alunoConsulta.cpfAluno != "")
             {
-                novoAluno = alunoController.Consulta(alunoConsulta.nomeAluno, alunoConsulta.rgAluno, alunoConsulta.cpfAluno);
+                novoAluno = alunoController.Consulta(alunoConsulta);
                 if (novoAluno == null)
                 {
                     MessageBox.Show("Esse Registro não existe!");

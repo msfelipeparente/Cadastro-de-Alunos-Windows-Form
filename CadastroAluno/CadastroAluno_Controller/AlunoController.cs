@@ -10,30 +10,30 @@ namespace CadastroAluno_Controller
 {
     public class AlunoController
     {
-        public bool Cadastrar(string nome, string rg, string cpf)
+        public bool Cadastrar(Aluno alunoInclusao)
         {
-            string query = "INSERT into Alunos(nome,rg,cpf) VALUES('" + nome + "','" + rg + "','" + cpf + "')";
+            string query = "INSERT into Alunos(nome,rg,cpf) VALUES('" + alunoInclusao.nomeAluno  + "','" + alunoInclusao.rgAluno + "','" + alunoInclusao.cpfAluno + "')";
             Boolean retorno = Execucao(query);
             return retorno;
         }
 
-        public bool Alterar(string nome, string rg, string cpf)
+        public bool Alterar(Aluno alunoAlteracao)
         {
-            string query = "UPDATE Alunos  SET nome ='" + nome + "', rg ='" + rg + "' WHERE CPF='" + cpf+"'";
+            string query = "UPDATE Alunos  SET nome ='" + alunoAlteracao.nomeAluno + "', rg ='" + alunoAlteracao.rgAluno + "' WHERE CPF='" + alunoAlteracao.cpfAluno+"'";
             Boolean retorno = Execucao(query);
             return retorno;
         }
 
-        public bool Exclusao(string nome, string rg, string cpf)
+        public bool Exclusao(Aluno alunoExclusao)
         {
-            string query = "DELETE FROM Alunos WHERE cpf='"+cpf+"'";
+            string query = "DELETE FROM Alunos WHERE cpf='" + alunoExclusao.cpfAluno+ "'";
             Boolean retorno = Execucao(query);
             return retorno;
         }
 
-        public Aluno Consulta(string nome, string rg, string cpf)
+        public Aluno Consulta(Aluno alunoConsulta)
         {
-            string query = "SELECT*FROM Alunos WHERE CPF='" + cpf + "'";
+            string query = "SELECT*FROM Alunos WHERE CPF='" + alunoConsulta.cpfAluno +"'";
             Aluno retorno = ExecucaoConsulta(query);
             return retorno;
         }
@@ -121,7 +121,7 @@ namespace CadastroAluno_Controller
         {
             OleDbConnection conn = null;
 
-            string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=c:\Alunos.accdb;";
+            string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Lana\Alunos1.accdb";
             conn = new OleDbConnection(connectionString);
 
             if (conn.State == System.Data.ConnectionState.Closed)
